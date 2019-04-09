@@ -19,8 +19,10 @@
         <td><%= card.desc %></td>
         <td><%= card.price %></td>
         <td><%= link_to 'Show', card %></td>
+        <% if current_user.admin? %>
         <td><%= link_to 'Edit', edit_card_path(card) %></td>
         <td><%= link_to 'Destroy', card, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+        <%end%>
       </tr>
     <% end %>
   </tbody>
@@ -28,4 +30,8 @@
 
 <br>
 
+<% if current_user.admin? %>
 <%= link_to 'New Card', new_card_path %>
+<%end%>
+
+<%= link_to 'Back to the main page', "/" %>
