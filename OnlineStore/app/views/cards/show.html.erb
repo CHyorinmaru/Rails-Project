@@ -15,6 +15,7 @@
   <%= @card.price %>
 </p>
 
+
 <% if current_user.admin? %>
 <%= link_to 'Edit', edit_card_path(@card) %> |
 <% end %>
