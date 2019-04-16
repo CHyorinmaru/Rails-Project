@@ -12,4 +12,7 @@ class HomeController < ApplicationController
 
 		redirect_to cards_path
 	end
+
+	def login_page
+	end
 end

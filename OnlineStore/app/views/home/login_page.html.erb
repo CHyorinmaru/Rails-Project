@@ -1,0 +1,6 @@
+<h3>Please first Log in or Sign up before viewing our content<h3>
+<% if(!current_user.present?)%>
+  <%= link_to "Sign up", new_user_registration_path, :class => 'navbar-item'  %>
+  <%= link_to "Log in", new_user_session_path, :class => 'navbar-item'  %>
+<% end %>
+
