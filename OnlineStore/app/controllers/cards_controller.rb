@@ -1,5 +1,7 @@
 class CardsController < ApplicationController
   before_action :set_card, only: [:show, :edit, :update, :destroy]
+  before_action :restrict_user, only: [:new, :edit, :update, :create, :destroy]
+  before_action :ownership, only: [:edit, :update, :destroy]
 
   # GET /cards
   # GET /cards.json
@@ -25,7 +27,7 @@ class CardsController < ApplicationController
   # POST /cards.json
   def create
     @card = Card.new(card_params)
-
+    @card.user = current_user
     respond_to do |format|
       if @card.save
         format.html { redirect_to @card, notice: 'Card was successfully created.' }
@@ -65,6 +67,18 @@ class CardsController < ApplicationController
     # Use callbacks to share common setup or constraints between actions.
     def set_card
       @card = Card.find(params[:id])
+    end
+
+    def restrict_user
+      if current_user.nil? || !current_user.admin?
+          redirect_to "/", notice: "You don't have access"
+      end
+    end
+
+    def ownership
+      if @card.user != current_user
+        redirect_to "/", notice: "You are not the owner"
+      end
     end
 
     # Never trust parameters from the scary internet, only allow the white list through.

@@ -4,6 +4,8 @@ class User < ApplicationRecord
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :validatable
 
+    has_many :cards
+
 	private
 	before_create :confirmation_token
 	def confirmation_token
