@@ -18,12 +18,14 @@
               </div>
                 <%= link_to "Edit profile", edit_user_registration_path, :class => 'navbar-item' %>
                 <%= link_to "Log out", destroy_user_session_path, method: :delete, :class => 'navbar-item'  %>
+                <%= link_to image_tag("shopping-trolley.png", border: 0, width: 30, hight: 30), shopping_carts_path  %>
           
           <%= link_to(edit_user_registration_path, class: 'navbar-item') do %>
         <% end %>
         <% else %>
             <%= link_to "Sign up", new_user_registration_path, :class => 'navbar-item'  %>
             <%= link_to "Log in", new_user_session_path, :class => 'navbar-item'  %>
+            <%= link_to image_tag("shopping-trolley.png", border: 0, width: 30, hight: 30), "login_page"  %>
         <% end %>
       </div>
 
@@ -33,7 +35,7 @@
           <% if(current_user.present?) %>
               <%= link_to 'GIFTCARDS', cards_path %>
            <% else %>
-              <%= link_to "GIFTCARDS", "/home/login_page" %>
+              <%= link_to "GIFTCARDS", "login_page" %>
            <% end %>
           
         </div>
